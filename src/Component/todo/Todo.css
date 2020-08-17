@@ -1,0 +1,8 @@
+.add-button{
+    position: fixed;
+    right: 4rem;
+    bottom: 3rem;
+}
+.check-input{
+    cursor: pointer;
+}
