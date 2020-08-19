@@ -8,25 +8,9 @@ import './Todo.css';
 
 
 function Todo({ todoList }) {
+
     const [search, setSearch] = useState('');
-    // const [todolist, setTodolist] = useState([
-    //     {
-    //         id: 1,
-    //         title: "title1",
-    //         checkList: [
-    //             { id: 1, text: "text1", status: false },
-    //             { id: 2, text: "text2", status: false },
-    //         ]
-    //     },
-    //     {
-    //         id: 2,
-    //         title: "title2",
-    //         checkList: [
-    //             { id: 1, text: "text1", status: false },
-    //             { id: 2, text: "text2", status: true },
-    //         ]
-    //     }
-    // ]);
+
     const handleChange = (event) => {
         const { value } = event.target;
         setSearch(value);
@@ -40,7 +24,7 @@ function Todo({ todoList }) {
             <Row className="justify-content-center px-5" xs={1} md={2} xl={3}>
                 {
                     searchTodo.map(item =>
-                        <CardTodo item={item} />
+                        <CardTodo item={item} key={item.id} />
                     )
                 }
             </Row>
@@ -53,4 +37,4 @@ const mapStateToProps = (state) => {
         todoList: state.todoList.todo_List,
     }
 }
-export default connect(mapStateToProps)(Todo);
+export default connect(mapStateToProps, {})(Todo);

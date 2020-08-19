@@ -1,12 +1,12 @@
 import React from 'react';
 import { FormGroup, Input } from 'reactstrap';
 
-function ToggleTextCard({ check }) {
+function ToggleTextCard({ checkItem }) {
     return (
-        <li key={check.id}>
+        <li>
             <FormGroup check>
                 <Input type="checkbox" name="check" id="exampleCheck" />
-                {check.status ? <del>{check.text}</del> : check.text}
+                {checkItem.status ? <del>{checkItem.text}</del> : checkItem.text}
             </FormGroup>
         </li>
     )

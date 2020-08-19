@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-import {
-    Card, Button, CardHeader, CardBody,
-    CardTitle, Col, FormGroup, Input,
-} from 'reactstrap';
+import { Card, Button, CardHeader, CardBody, CardTitle, Col } from 'reactstrap';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import ToggleTextCard from '../ToggleTextCard/ToggleTextCard';
+import { connect } from 'react-redux';
+import { deleteTodo } from '../../Redux/Todo/Todo.action';
 
-function CardTodo({ item }) {
+
+function CardTodo({ item, deleteTodo }) {
 
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [dropdownId, setDropdownId] = useState(null)
@@ -21,11 +21,12 @@ function CardTodo({ item }) {
         setToggleId(id);
         setToggleShow(!toggleShow)
     }
+
     return (
-        <Col key={item.id} className="p-3">
+        <Col className="p-3">
             <Card>
                 <CardHeader className="d-flex justify-content-between">
-                    <p>{item.title}</p>
+                    <p>{item.title} {`${item.id}`}</p>
                     <Dropdown isOpen={dropdownOpen} toggle={() => toggle(item.id)}>
                         <DropdownToggle caret>
                             Actions
@@ -34,7 +35,7 @@ function CardTodo({ item }) {
                             dropdownOpen && dropdownId == item.id ?
                                 <DropdownMenu>
                                     <DropdownItem>Edit</DropdownItem>
-                                    <DropdownItem>Delete</DropdownItem>
+                                    <DropdownItem onClick={() => deleteTodo(item.id)}>Delete</DropdownItem>
                                 </DropdownMenu>
                                 : <div></div>
                         }
@@ -42,13 +43,13 @@ function CardTodo({ item }) {
                     </Dropdown>
                 </CardHeader>
                 <CardBody>
-                    <CardTitle>{item.text}</CardTitle>
+                    <CardTitle>{item.text} {`${item.id}`}</CardTitle>
                     <Button onClick={() => toggleButton(item.id)}>Toggle</Button>
                     {
                         toggleId == item.id && toggleShow ?
                             <ol>
-                                {item.checkList.map(check =>
-                                    <ToggleTextCard check={check} />
+                                {item.checkList.map(checkItem =>
+                                    <ToggleTextCard checkItem={checkItem} key={checkItem.id} />
                                 )}
                             </ol>
                             : <div></div>
@@ -60,4 +61,5 @@ function CardTodo({ item }) {
     )
 }
 
-export default CardTodo
+
+export default connect(null, { deleteTodo })(CardTodo);
