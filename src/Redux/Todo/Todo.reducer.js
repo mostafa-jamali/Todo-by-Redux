@@ -3,6 +3,7 @@ const initialState = {
         {
             id: 1,
             title: "title1",
+            text: "text1",
             checkList: [
                 { id: 1, text: "text1", status: false },
                 { id: 2, text: "text2", status: false },
@@ -11,6 +12,7 @@ const initialState = {
         {
             id: 2,
             title: "title2",
+            text: "text2",
             checkList: [
                 { id: 1, text: "text1", status: false },
                 { id: 2, text: "text2", status: true },
@@ -19,6 +21,7 @@ const initialState = {
         {
             id: 3,
             title: "title3",
+            text: "text3",
             checkList: [
                 { id: 1, text: "text1", status: false },
                 { id: 2, text: "text2", status: true },
