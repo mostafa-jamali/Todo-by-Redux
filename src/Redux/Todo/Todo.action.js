@@ -13,3 +13,15 @@ export const deleteTodo = (id) => {
         payload: id
     }
 }
+export const editTodo = (todo) => {
+    return {
+        type: types.EDIT_TODO,
+        payload: todo
+    }
+}
+export const changeCheckItemStatus = (todoId, itemId) => {
+    return {
+        type: types.CHANGE_ITEM_STATUS,
+        payload: {todoId, itemId}
+    }
+}

@@ -2,8 +2,8 @@ const initialState = {
     todo_List: [
         {
             id: 1,
-            title: "title",
-            text: "text",
+            title: "title1",
+            text: "text1",
             checkList: [
                 { id: 1, text: "text1", status: false },
                 { id: 2, text: "text2", status: false },
@@ -11,8 +11,8 @@ const initialState = {
         },
         {
             id: 2,
-            title: "title",
-            text: "text",
+            title: "title2",
+            text: "text2",
             checkList: [
                 { id: 1, text: "text1", status: false },
                 { id: 2, text: "text2", status: true },
@@ -20,8 +20,8 @@ const initialState = {
         },
         {
             id: 3,
-            title: "title",
-            text: "text",
+            title: "title3",
+            text: "text3",
             checkList: [
                 { id: 1, text: "text1", status: false },
                 { id: 2, text: "text2", status: true },
@@ -41,6 +41,20 @@ const todoReducer = (state = initialState, action) => {
             return {
                 ...state,
                 todo_List: state.todo_List.filter(item => item.id !== payload)
+            }
+        case ("EDIT_TODO"):
+            return {
+                ...state,
+                todo_List: state.todo_List.map(item => item.id == payload.id ? payload: item)
+            }
+        case ("CHANGE_ITEM_STATUS"):
+            return {
+                ...state,
+                todo_List: state.todo_List.map(item => item.id == payload.todoId ?
+                    {
+                        ...item, checkList: item.checkList.map(check => check.id == payload.itemId ?
+                            { ...check, status: !check.status } : check)
+                    } : item)
             }
         default:
             return state;

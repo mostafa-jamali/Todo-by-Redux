@@ -2,5 +2,6 @@
 export default {
     ADD_TODO: "ADD_TODO",
     DELETE_TODO: "DELETE_TODO",
-    
+    EDIT_TODO: "EDIT_TODO",
+    CHANGE_ITEM_STATUS: "CHANGE_ITEM_STATUS"
 }

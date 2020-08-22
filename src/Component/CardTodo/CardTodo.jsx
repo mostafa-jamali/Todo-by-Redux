@@ -26,7 +26,7 @@ function CardTodo({ item, deleteTodo }) {
         <Col className="p-3">
             <Card>
                 <CardHeader className="d-flex justify-content-between">
-                    <p>{item.title} {`${item.id}`}</p>
+                    <p>{item.title}</p>
                     <Dropdown isOpen={dropdownOpen} toggle={() => toggle(item.id)}>
                         <DropdownToggle caret>
                             Actions
@@ -43,13 +43,13 @@ function CardTodo({ item, deleteTodo }) {
                     </Dropdown>
                 </CardHeader>
                 <CardBody>
-                    <CardTitle>{item.text} {`${item.id}`}</CardTitle>
+                    <CardTitle>{item.text}</CardTitle>
                     <Button onClick={() => toggleButton(item.id)}>Toggle</Button>
                     {
                         toggleId == item.id && toggleShow ?
                             <ol>
                                 {item.checkList.map(checkItem =>
-                                    <ToggleTextCard checkItem={checkItem} key={checkItem.id} />
+                                    <ToggleTextCard item={item} checkItem={checkItem} key={checkItem.id} />
                                 )}
                             </ol>
                             : <div></div>
