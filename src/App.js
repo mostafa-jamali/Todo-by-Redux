@@ -7,7 +7,7 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
-import Todo from './Component/todo/Todo';
+import TodoArchive from './view/TodoArchive/TodoArchive';
 import AddTodo from './view/AddTodo/AddTodo';
 
 function App() {
@@ -17,11 +17,14 @@ function App() {
         <Router>
           <div>
             <Switch>
-              <Route path="/add">
+            <Route path="/edit/:todoId">
+                <AddTodo />
+              </Route>
+              <Route exact path="/add">
                 <AddTodo />
               </Route>
               <Route path="/">
-                <Todo />
+                <TodoArchive />
               </Route>
             </Switch>
           </div>

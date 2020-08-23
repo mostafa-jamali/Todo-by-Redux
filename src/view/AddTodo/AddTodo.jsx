@@ -1,18 +1,22 @@
-import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom'
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Form, Input, FormGroup, Label, Button } from 'reactstrap';
-
+import { useSelector } from 'react-redux'
 import { connect } from 'react-redux';
-import { addTodo } from '../../Redux/Todo/Todo.action';
+import { addTodo, editTodo } from '../../Redux/Todo/Todo.action';
 
-function AddTodo({ addTodo, length }) {
+function AddTodo({ addTodo, length, editTodo }) {
     const history = useHistory();
-    const [todos, setTodos] = useState({
-        id: length + 1,
+    const { todoId } = useParams();
+
+    const editObject = useSelector(state => state.todoList.todo_List.find(item => item.id == todoId)) //todoId = useParams
+    const [todos, setTodos] = useState(editObject ? { title: editObject.title, text: editObject.text } : {
         title: "",
         text: "",
     })
-    const [checkItem, setCheckItem] = useState([{
+
+    const [checkItem, setCheckItem] = useState(editObject ? editObject.checkList : [{
         id: 1,
         text: "",
         status: false
@@ -27,7 +31,11 @@ function AddTodo({ addTodo, length }) {
     }
     const handleSubmit = (event) => {
         event.preventDefault();
-        addTodo({ ...todos, checkList: checkItem })
+
+        editObject && editTodo({ id: editObject.id, ...todos, checkList: checkItem });
+
+        !editObject && addTodo({ id: length + 1, ...todos, checkList: checkItem })
+
         history.push('/')
     }
     const addCheckItem = () => {
@@ -43,18 +51,18 @@ function AddTodo({ addTodo, length }) {
         <Form className="col-6 mx-auto mt-5 p-3 border rounded-lg bg-info" onSubmit={handleSubmit}>
             <FormGroup>
                 <Label htmlFor="title" className="mb-0">Title:</Label>
-                <Input placeholder='title' type="text" name='title' id='title' onChange={handleChange} />
+                <Input placeholder='title' type="text" name='title' id='title' value={todos.title} onChange={handleChange} />
             </FormGroup>
             <FormGroup>
                 <Label htmlFor="text" className="mb-0">Text:</Label>
-                <Input placeholder='text' type="text" name='text' id='text' onChange={handleChange} />
+                <Input placeholder='text' type="text" name='text' id='text' value={todos.text} onChange={handleChange} />
             </FormGroup>
 
             {checkItem.map(item =>
                 <div key={item.id}>
                     <FormGroup>
                         <Label htmlFor="checkItem" className="mb-0">Check item {item.id}</Label>
-                        <Input placeholder={`Check item ${item.id}`} type="text" name='checkItem' id='checkItem' onChange={(e) => handleChangeItem(e, item.id)} />
+                        <Input placeholder={`Check item ${item.id}`} type="text" name='checkItem' id='checkItem' value={item.text} onChange={(e) => handleChangeItem(e, item.id)} />
                     </FormGroup>
                 </div>
             )}
@@ -72,4 +80,4 @@ const mapStateToProps = (state) => {
         length: state.todoList.todo_List.length,
     }
 }
-export default connect(mapStateToProps, { addTodo })(AddTodo);
+export default connect(mapStateToProps, { addTodo, editTodo })(AddTodo);

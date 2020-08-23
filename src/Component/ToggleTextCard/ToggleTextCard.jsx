@@ -5,7 +5,6 @@ import {changeCheckItemStatus} from '../../Redux/Todo/Todo.action'
 import './ToggleTextCard.css'
 
 function ToggleTextCard({ item, checkItem,changeCheckItemStatus }) {
-    const [status, setStatus] = useState(null)
 
     return (
         <li className="liToggle">
@@ -17,9 +16,4 @@ function ToggleTextCard({ item, checkItem,changeCheckItemStatus }) {
     )
 }
 
-const mapStateToProps = (state) => {
-    return {
-        todoList: state.todoList.todo_List,
-    }
-}
 export default connect(null, {changeCheckItemStatus})(ToggleTextCard);

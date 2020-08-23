@@ -19,9 +19,9 @@ function Todo({ todoList }) {
     let searchTodo = todoList.filter(item => item.title.toLowerCase().startsWith(search.toLowerCase()));
 
     return (
-        <div className="border rounded py-3">
+        <div className="border rounded py-3 mx-lg-5">
             <Search handleChange={handleChange} search={search} />
-            <Row className="justify-content-center px-5" xs={1} md={2} xl={3}>
+            <Row className="justify-content-left px-5" xs={1} lg={2}>
                 {
                     searchTodo.map(item =>
                         <CardTodo item={item} key={item.id} />

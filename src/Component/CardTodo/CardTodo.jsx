@@ -1,13 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { Card, Button, CardHeader, CardBody, CardTitle, Col } from 'reactstrap';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { Link } from 'react-router-dom'
 import ToggleTextCard from '../ToggleTextCard/ToggleTextCard';
 import { connect } from 'react-redux';
 import { deleteTodo } from '../../Redux/Todo/Todo.action';
+import './CardTodo.css'
 
 
 function CardTodo({ item, deleteTodo }) {
-
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [dropdownId, setDropdownId] = useState(null)
     const toggle = (id) => {
@@ -23,7 +24,7 @@ function CardTodo({ item, deleteTodo }) {
     }
 
     return (
-        <Col className="p-3">
+        <Col className="py-3 px-0 p-md-3">
             <Card>
                 <CardHeader className="d-flex justify-content-between">
                     <p>{item.title}</p>
@@ -34,7 +35,7 @@ function CardTodo({ item, deleteTodo }) {
                         {
                             dropdownOpen && dropdownId == item.id ?
                                 <DropdownMenu>
-                                    <DropdownItem>Edit</DropdownItem>
+                                    <DropdownItem><Link to={`/edit/${item.id}`} className="editDropdownItem">Edit</Link></DropdownItem>
                                     <DropdownItem onClick={() => deleteTodo(item.id)}>Delete</DropdownItem>
                                 </DropdownMenu>
                                 : <div></div>
@@ -60,6 +61,5 @@ function CardTodo({ item, deleteTodo }) {
 
     )
 }
-
 
 export default connect(null, { deleteTodo })(CardTodo);
