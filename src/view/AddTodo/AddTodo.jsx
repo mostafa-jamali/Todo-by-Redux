@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
-import { Form, Input, FormGroup, Label, Button } from 'reactstrap';
+import { Form, Input, FormGroup, Label, Button, Card, CardHeader, CardBody, CardFooter } from 'reactstrap';
 import { useSelector } from 'react-redux'
 import { connect } from 'react-redux';
 import { addTodo, editTodo } from '../../Redux/Todo/Todo.action';
@@ -48,28 +48,37 @@ function AddTodo({ addTodo, length, editTodo }) {
         // })
     }
     return (
-        <Form className="col-6 mx-auto mt-5 p-3 border rounded-lg bg-info" onSubmit={handleSubmit}>
-            <FormGroup>
-                <Label htmlFor="title" className="mb-0">Title:</Label>
-                <Input placeholder='title' type="text" name='title' id='title' value={todos.title} onChange={handleChange} />
-            </FormGroup>
-            <FormGroup>
-                <Label htmlFor="text" className="mb-0">Text:</Label>
-                <Input placeholder='text' type="text" name='text' id='text' value={todos.text} onChange={handleChange} />
-            </FormGroup>
-
-            {checkItem.map(item =>
-                <div key={item.id}>
+        <Form className="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-4 mx-auto mt-5 p-3" onSubmit={handleSubmit}>
+            <Card>
+                <CardHeader>
                     <FormGroup>
-                        <Label htmlFor="checkItem" className="mb-0">Check item {item.id}</Label>
-                        <Input placeholder={`Check item ${item.id}`} type="text" name='checkItem' id='checkItem' value={item.text} onChange={(e) => handleChangeItem(e, item.id)} />
+                        <Label htmlFor="title" className="mb-0">Title:</Label>
+                        <Input placeholder='title' type="text" name='title' id='title' value={todos.title} onChange={handleChange} />
                     </FormGroup>
-                </div>
-            )}
+                </CardHeader>
+                <CardBody>
+                    <FormGroup>
+                        <Label htmlFor="text" className="mb-0">Text:</Label>
+                        <Input placeholder='text' type="text" name='text' id='text' value={todos.text} onChange={handleChange} />
+                    </FormGroup>
+                    {checkItem.map(item =>
+                        <div key={item.id}>
+                            <FormGroup>
+                                <Label htmlFor="checkItem" className="mb-0">Check list {item.id}</Label>
+                                <Input placeholder={`Check list ${item.id}`} type="text" name='checkItem' id='checkItem' value={item.text} onChange={(e) => handleChangeItem(e, item.id)} />
+                            </FormGroup>
+                        </div>
+                    )}
+                </CardBody>
+                <CardFooter>
+                    <Button color='success' className="border" type="submit">save</Button> {' '}
+                    <Button color='primary' className="border" type="button" onClick={addCheckItem} >add check list</Button> {' '}
+                    <Button type="reset" className="border" onClick={handleClear}>clear</Button>
+                </CardFooter>
 
-            <Button color='success' className="border" type="submit">save</Button> {' '}
-            <Button color='primary' className="border" type="button" onClick={addCheckItem} >add check item</Button> {' '}
-            <Button type="button" className="border" onClick={handleClear}>clear</Button>
+
+
+            </Card>
         </Form>
     )
 

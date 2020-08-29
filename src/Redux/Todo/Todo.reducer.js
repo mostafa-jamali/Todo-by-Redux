@@ -6,7 +6,7 @@ const initialState = {
             text: "text1",
             checkList: [
                 { id: 1, text: "text1", status: false },
-                { id: 2, text: "text2", status: false },
+                { id: 2, text: "text2", status: true },
             ]
         },
         {
