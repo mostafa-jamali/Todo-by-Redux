@@ -1,25 +1,26 @@
 {
   "files": {
-    "main.css": "/Todo-by-Redux/static/css/main.6e40db62.chunk.css",
-    "main.js": "/Todo-by-Redux/static/js/main.869b8639.chunk.js",
-    "main.js.map": "/Todo-by-Redux/static/js/main.869b8639.chunk.js.map",
+    "main.css": "/Todo-by-Redux/static/css/main.78e87ed9.chunk.css",
+    "main.js": "/Todo-by-Redux/static/js/main.19f79f6b.chunk.js",
+    "main.js.map": "/Todo-by-Redux/static/js/main.19f79f6b.chunk.js.map",
     "runtime-main.js": "/Todo-by-Redux/static/js/runtime-main.d61ee614.js",
     "runtime-main.js.map": "/Todo-by-Redux/static/js/runtime-main.d61ee614.js.map",
     "static/css/2.11829350.chunk.css": "/Todo-by-Redux/static/css/2.11829350.chunk.css",
-    "static/js/2.200c4c11.chunk.js": "/Todo-by-Redux/static/js/2.200c4c11.chunk.js",
-    "static/js/2.200c4c11.chunk.js.map": "/Todo-by-Redux/static/js/2.200c4c11.chunk.js.map",
+    "static/js/2.13885749.chunk.js": "/Todo-by-Redux/static/js/2.13885749.chunk.js",
+    "static/js/2.13885749.chunk.js.map": "/Todo-by-Redux/static/js/2.13885749.chunk.js.map",
     "index.html": "/Todo-by-Redux/index.html",
-    "precache-manifest.d05979178f2baa66eec7c437948f8ed5.js": "/Todo-by-Redux/precache-manifest.d05979178f2baa66eec7c437948f8ed5.js",
+    "precache-manifest.061cdfde6e794b311e2461efda6b7b8f.js": "/Todo-by-Redux/precache-manifest.061cdfde6e794b311e2461efda6b7b8f.js",
     "service-worker.js": "/Todo-by-Redux/service-worker.js",
     "static/css/2.11829350.chunk.css.map": "/Todo-by-Redux/static/css/2.11829350.chunk.css.map",
-    "static/css/main.6e40db62.chunk.css.map": "/Todo-by-Redux/static/css/main.6e40db62.chunk.css.map",
-    "static/js/2.200c4c11.chunk.js.LICENSE.txt": "/Todo-by-Redux/static/js/2.200c4c11.chunk.js.LICENSE.txt"
+    "static/css/main.78e87ed9.chunk.css.map": "/Todo-by-Redux/static/css/main.78e87ed9.chunk.css.map",
+    "static/js/2.13885749.chunk.js.LICENSE.txt": "/Todo-by-Redux/static/js/2.13885749.chunk.js.LICENSE.txt",
+    "static/media/Todo.css": "/Todo-by-Redux/static/media/YekanBakh-Regular.7296ae79.ttf"
   },
   "entrypoints": [
     "static/js/runtime-main.d61ee614.js",
     "static/css/2.11829350.chunk.css",
-    "static/js/2.200c4c11.chunk.js",
-    "static/css/main.6e40db62.chunk.css",
-    "static/js/main.869b8639.chunk.js"
+    "static/js/2.13885749.chunk.js",
+    "static/css/main.78e87ed9.chunk.css",
+    "static/js/main.19f79f6b.chunk.js"
   ]
 }
