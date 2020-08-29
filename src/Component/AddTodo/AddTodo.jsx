@@ -48,7 +48,7 @@ function AddTodo({ addTodo, length, editTodo }) {
         // })
     }
     return (
-        <Form className="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-4 mx-auto mt-5 p-3" onSubmit={handleSubmit}>
+        <Form className="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-4 mx-auto p-3" onSubmit={handleSubmit}>
             <Card>
                 <CardHeader>
                     <FormGroup>

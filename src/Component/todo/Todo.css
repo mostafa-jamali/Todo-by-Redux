@@ -1,9 +1,11 @@
-/* .add-button{
-    position: fixed;
-    right: 4rem;
-    bottom: 3rem;
-    box-shadow: 0 0 10px 5px red;
-} */
+@font-face {
+    font-family: YekanBakh;
+    src: url(../../assets/fonts/YekanBakh-Regular.ttf);
+}
+*{
+    font-family: YekanBakh;
+}
+  
 .check-input{
     cursor: pointer;
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import {store} from './Redux/store';
+import { store } from './Redux/store';
 import './App.css';
 import {
   BrowserRouter as Router,
@@ -8,7 +8,6 @@ import {
   Route,
 } from "react-router-dom";
 import TodoArchive from './view/TodoArchive/TodoArchive';
-import AddTodo from './view/AddTodo/AddTodo';
 
 function App() {
   return (
@@ -17,11 +16,8 @@ function App() {
         <Router>
           <div>
             <Switch>
-            <Route path="/edit/:todoId">
-                <AddTodo />
-              </Route>
-              <Route exact path="/add">
-                <AddTodo />
+              <Route path="/edit/:todoId">
+                <TodoArchive />
               </Route>
               <Route path="/">
                 <TodoArchive />

@@ -2,29 +2,29 @@ const initialState = {
     todo_List: [
         {
             id: 1,
-            title: "title1",
-            text: "text1",
+            title: "University",
+            text: "Study",
             checkList: [
-                { id: 1, text: "text1", status: false },
-                { id: 2, text: "text2", status: true },
+                { id: 1, text: "mathematics", status: false },
+                { id: 2, text: "static", status: true },
             ]
         },
         {
             id: 2,
-            title: "title2",
-            text: "text2",
+            title: "Home",
+            text: "Routine works",
             checkList: [
-                { id: 1, text: "text1", status: false },
-                { id: 2, text: "text2", status: false },
+                { id: 1, text: "buy", status: false },
+                { id: 2, text: "rest", status: false },
             ]
         },
         {
             id: 3,
-            title: "title3",
-            text: "text3",
+            title: "Work",
+            text: "Meetting",
             checkList: [
-                { id: 1, text: "text1", status: false },
-                { id: 2, text: "text2", status: false },
+                { id: 1, text: "salary and benefits", status: false },
+                { id: 2, text: "vacations", status: false },
             ]
         }
     ]

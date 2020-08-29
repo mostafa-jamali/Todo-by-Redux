@@ -45,7 +45,7 @@ function CardTodo({ item, deleteTodo }) {
                 </CardHeader>
                 <CardBody>
                     <CardTitle>{item.text}</CardTitle>
-                    <Button onClick={() => toggleButton(item.id)}>Toggle</Button>
+                    <Button onClick={() => toggleButton(item.id)} className="mb-3">Toggle</Button>
                     {
                         toggleId == item.id && toggleShow ?
                             <ol>
