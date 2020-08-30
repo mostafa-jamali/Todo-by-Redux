@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import Search from '../Search/Search'
 import CardTodo from '../CardTodo/CardTodo';
 import DoneList from '../DoneList/DoneList';
-import AddTodo from '../../view/AddTodo/AddTodo'
+import AddTodo from '../AddTodo/AddTodo'
 import './Todo.css';
 
 //material ui
@@ -84,7 +84,7 @@ function Todo({ todoList }) {
                                     {
                                         searchTodo.map(item =>
                                             <div key={item.id}>
-                                                <h3>{item.title}</h3>
+                                                <h4 className="mt-4 mb-0">{item.title}</h4>
                                                 <ol>
                                                     <DoneList item={item} />
                                                 </ol>

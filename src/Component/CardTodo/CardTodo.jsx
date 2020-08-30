@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, Button, CardHeader, CardBody, CardTitle, Col } from 'reactstrap';
+import { Card, Button, CardHeader, CardBody, CardTitle, Col, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import { Link } from 'react-router-dom'
 import ToggleTextCard from '../ToggleTextCard/ToggleTextCard';
@@ -23,6 +23,10 @@ function CardTodo({ item, deleteTodo }) {
         setToggleShow(!toggleShow)
     }
 
+    const [open, setOpen] = useState(false);
+    const toggleModal = () => {
+        setOpen(!open)
+    }
     return (
         <Col className="py-3 px-0 p-md-3">
             <Card>
@@ -36,13 +40,23 @@ function CardTodo({ item, deleteTodo }) {
                             dropdownOpen && dropdownId == item.id ?
                                 <DropdownMenu>
                                     <DropdownItem><Link to={`/edit/${item.id}`} className="editDropdownItem">Edit</Link></DropdownItem>
-                                    <DropdownItem onClick={() => deleteTodo(item.id)}>Delete</DropdownItem>
+                                    <DropdownItem onClick={toggleModal}>Delete</DropdownItem>
                                 </DropdownMenu>
                                 : <div></div>
                         }
 
                     </Dropdown>
                 </CardHeader>
+                <Modal isOpen={open} toggle={toggleModal}>
+                    <ModalHeader className="bg-warning" toggle={toggleModal}>Delete todo</ModalHeader>
+                    <ModalBody>
+                        <h5>Are you sure delete this todo?</h5>
+                    </ModalBody>
+                    <ModalFooter>
+                        <Button color="danger" onClick={() => deleteTodo(item.id)}>Delete</Button>
+                        <Button color="primary" onClick={toggleModal}>Cancel</Button>
+                    </ModalFooter>
+                </Modal>
                 <CardBody>
                     <CardTitle>{item.text}</CardTitle>
                     <Button onClick={() => toggleButton(item.id)} className="mb-3">Toggle</Button>
