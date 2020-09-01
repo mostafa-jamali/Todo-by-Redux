@@ -43,9 +43,9 @@ function Todo({ todoList }) {
 
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
+
     return (
         <div className="border rounded mx-lg-5">
-
             <Card className="">
                 <CardHeader className="px-2">
                     <BottomNavigation value={value} onChange={(event, newValue) => { setValue(newValue) }} showLabels className={classes.root + " col-12 col-sm-8 col-lg-6 col-xl-5 px-0 rounded"} >
@@ -60,7 +60,7 @@ function Todo({ todoList }) {
                     <Switch>
                         <Route path={"/searchTodo/"}>
                             <Search handleChange={handleChange} search={search} />
-                            <Row className="justify-content-left px-5" xs={1} lg={2}>
+                            <Row className="justify-content-left px-sm-5" xs={1} lg={2}>
                                 {
                                     searchTodo.map(item =>
                                         <CardTodo item={item} key={item.id} />
@@ -69,7 +69,7 @@ function Todo({ todoList }) {
                             </Row>
                         </Route>
                         <Route path={"/todoList/"}>
-                            <Row className="justify-content-left px-5" xs={1} lg={2}>
+                            <Row className="justify-content-left px-sm-5" xs={1} lg={2}>
                                 {
                                     searchTodo.map(item =>
                                         <CardTodo item={item} key={item.id} />

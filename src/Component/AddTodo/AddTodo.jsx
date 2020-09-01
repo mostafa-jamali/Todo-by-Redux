@@ -53,19 +53,19 @@ function AddTodo({ addTodo, length, editTodo }) {
                 <CardHeader>
                     <FormGroup>
                         <Label htmlFor="title" className="mb-0">Title:</Label>
-                        <Input placeholder='title' type="text" name='title' id='title' value={todos.title} onChange={handleChange} />
+                        <Input placeholder='title' type="text" name='title' id='title' className="text-info" value={todos.title} onChange={handleChange} />
                     </FormGroup>
                 </CardHeader>
                 <CardBody>
                     <FormGroup>
                         <Label htmlFor="text" className="mb-0">Text:</Label>
-                        <Input placeholder='text' type="text" name='text' id='text' value={todos.text} onChange={handleChange} />
+                        <Input placeholder='text' type="text" name='text' id='text' className="text-info" value={todos.text} onChange={handleChange} />
                     </FormGroup>
                     {checkItem.map(item =>
                         <div key={item.id}>
                             <FormGroup>
                                 <Label htmlFor="checkItem" className="mb-0">Check list {item.id}</Label>
-                                <Input placeholder={`Check list ${item.id}`} type="text" name='checkItem' id='checkItem' value={item.text} onChange={(e) => handleChangeItem(e, item.id)} />
+                                <Input placeholder={`Check list ${item.id}`} type="text" name='checkItem' id='checkItem' className="text-info" value={item.text} onChange={(e) => handleChangeItem(e, item.id)} />
                             </FormGroup>
                         </div>
                     )}
