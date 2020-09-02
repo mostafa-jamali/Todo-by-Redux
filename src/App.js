@@ -1,6 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { store } from './Redux/store';
+import { PersistGate } from 'redux-persist/integration/react'
+import store, { persistor } from './Redux/store';
 import './App.css';
 import {
   BrowserRouter as Router,
@@ -12,20 +13,22 @@ import TodoArchive from './view/TodoArchive/TodoArchive';
 function App() {
   return (
     <Provider store={store}>
-      <div className="App">
-        <Router>
-          <div>
-            <Switch>
-              <Route path="/edit/:todoId">
-                <TodoArchive />
-              </Route>
-              <Route path="/">
-                <TodoArchive />
-              </Route>
-            </Switch>
-          </div>
-        </Router>
-      </div>
+      <PersistGate loading={null} persistor={persistor}>
+        <div className="App">
+          <Router>
+            <div>
+              <Switch>
+                <Route path="/edit/:todoId">
+                  <TodoArchive />
+                </Route>
+                <Route path="/">
+                  <TodoArchive />
+                </Route>
+              </Switch>
+            </div>
+          </Router>
+        </div>
+      </PersistGate>
     </Provider>
   );
 }
