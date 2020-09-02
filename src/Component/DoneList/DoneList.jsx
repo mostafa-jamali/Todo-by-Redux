@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 
-function DoneList({item}) {
+function DoneList({ item }) {
     return (
         <div>
             {item.checkList.map(checkItem =>

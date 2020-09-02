@@ -17,6 +17,9 @@ import PlaylistAddCheckRoundedIcon from '@material-ui/icons/PlaylistAddCheckRoun
 import DoneAllRoundedIcon from '@material-ui/icons/DoneAllRounded';
 import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
 import PlaylistAddRoundedIcon from '@material-ui/icons/PlaylistAddRounded';
+import Paper from '@material-ui/core/Paper';
+import Zoom from '@material-ui/core/Zoom';
+
 
 const useStyles = makeStyles({
     root: {
@@ -44,15 +47,20 @@ function Todo({ todoList }) {
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
 
+
+    const [checked, setChecked] = React.useState(false);
+    const handleChangeCheck = () => {
+        setChecked(true);
+    };
     return (
         <div className="border rounded mx-lg-5">
             <Card className="">
                 <CardHeader className="px-2">
                     <BottomNavigation value={value} onChange={(event, newValue) => { setValue(newValue) }} showLabels className={classes.root + " col-12 col-sm-8 col-lg-6 col-xl-5 px-0 rounded"} >
                         <BottomNavigationAction component={Link} to="/todoList/" className={classes.borderButIcon + " px-0 px-sm-3"} label="TodoList" icon={<PlaylistAddCheckRoundedIcon />} />
-                        <BottomNavigationAction component={Link} to="/doneList/" className={classes.borderButIcon + " px-0 px-sm-3"} label="DoneList" icon={<DoneAllRoundedIcon />} />
+                        <BottomNavigationAction component={Link} to="/doneList/" onClick={handleChangeCheck} className={classes.borderButIcon + " px-0 px-sm-3"} label="DoneList" icon={<DoneAllRoundedIcon />} />
                         <BottomNavigationAction component={Link} to="/searchTodo/" className={classes.borderButIcon + " px-0 px-sm-3"} label="Search" icon={<SearchRoundedIcon />} />
-                        <BottomNavigationAction component={Link} to="/add/" className={classes.butIcon + " px-0 px-sm-3"} label="Add todo" icon={<PlaylistAddRoundedIcon />} />
+                        <BottomNavigationAction component={Link} to="/add/" onClick={handleChangeCheck} className={classes.butIcon + " px-0 px-sm-3"} label="Add todo" icon={<PlaylistAddRoundedIcon />} />
                     </BottomNavigation>
                 </CardHeader>
 
@@ -78,27 +86,39 @@ function Todo({ todoList }) {
                             </Row>
                         </Route>
                         <Route path={"/doneList/"}>
-                            <Card className="mx-5">
-                                <CardHeader>DoneList</CardHeader>
-                                <CardBody>
-                                    {
-                                        searchTodo.map(item =>
-                                            <div key={item.id}>
-                                                <h4 className="mt-4 mb-0">{item.title}</h4>
-                                                <ol>
-                                                    <DoneList item={item} />
-                                                </ol>
-                                            </div>
-                                        )
-                                    }
-                                </CardBody>
-                            </Card>
+                            <Zoom in={checked} style={{ transitionDelay: checked ? '300ms' : '0ms' }}>
+                                <Paper elevation={0}>
+                                    <Card className="mx-5">
+                                        <CardHeader>DoneList</CardHeader>
+                                        <CardBody>
+                                            {
+                                                searchTodo.map(item =>
+                                                    <div key={item.id}>
+                                                        <h4 className="mt-4 mb-0">{item.title}</h4>
+                                                        <ol>
+                                                            <DoneList item={item} />
+                                                        </ol>
+                                                    </div>
+                                                )
+                                            }
+                                        </CardBody>
+                                    </Card>
+                                </Paper>
+                            </Zoom>
                         </Route>
                         <Route path={"/add/"}>
-                            <AddTodo />
+                            <Zoom in={checked} style={{ transitionDelay: checked ? '300ms' : '0ms' }}>
+                                <Paper elevation={0}>
+                                    <AddTodo />
+                                </Paper>
+                            </Zoom>
                         </Route>
                         <Route path={"/edit/:todoId/"}>
-                            <AddTodo />
+                            <Zoom in={true} style={{ transitionDelay: true ? '300ms' : '0ms' }}>
+                                <Paper elevation={0}>
+                                    <AddTodo />
+                                </Paper>
+                            </Zoom>
                         </Route>
                     </Switch>
                 </CardBody>

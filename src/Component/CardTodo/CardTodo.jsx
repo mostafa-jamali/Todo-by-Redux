@@ -16,6 +16,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
 import EditIcon from '@material-ui/icons/Edit';
 import { makeStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Zoom from '@material-ui/core/Zoom';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -95,57 +97,63 @@ function CardTodo({ item, deleteTodo }) {
         setAnchorEl(null);
     };
 
+
+
     return (
         <Col className="py-3 px-0 p-md-3">
-            <Card>
-                <CardHeader className="d-flex justify-content-between">
-                    <h4 className="my-auto">{item.title}</h4>
-                    <div>
-                        <Button aria-controls="customized-menu" aria-haspopup="true" className={classes.dropDownButton} onClick={handleClick} >
-                            Edit / Delete
+            <Zoom in={true} style={{ transitionDelay: true ? `${(item.id) * 300}ms` : '0ms' }}>
+                <Paper elevation={0}>
+                    <Card>
+                        <CardHeader className="d-flex justify-content-between">
+                            <h4 className="my-auto">{item.title}</h4>
+                            <div>
+                                <Button aria-controls="customized-menu" aria-haspopup="true" className={classes.dropDownButton} onClick={handleClick} >
+                                    Edit / Delete
                         </Button>
-                        <StyledMenu id="customized-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose} >
-                            <StyledMenuItem>
-                                <ListItemIcon>
-                                    <EditIcon fontSize="small" />
-                                </ListItemIcon>
-                                <Link to={`/edit/${item.id}`} className="editDropdownItem"><ListItemText primary="Edit todo" /></Link>
-                            </StyledMenuItem>
-                            <StyledMenuItem>
-                                <ListItemIcon>
-                                    <DeleteOutlinedIcon fontSize="small" />
-                                </ListItemIcon>
-                                <ListItemText onClick={toggleModal} primary="Delete todo" />
-                            </StyledMenuItem>
-                        </StyledMenu>
-                    </div>
-                </CardHeader>
+                                <StyledMenu id="customized-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose} >
+                                    <StyledMenuItem>
+                                        <ListItemIcon>
+                                            <EditIcon fontSize="small" />
+                                        </ListItemIcon>
+                                        <Link to={`/edit/${item.id}`} className="editDropdownItem"><ListItemText primary="Edit todo" /></Link>
+                                    </StyledMenuItem>
+                                    <StyledMenuItem>
+                                        <ListItemIcon>
+                                            <DeleteOutlinedIcon fontSize="small" />
+                                        </ListItemIcon>
+                                        <ListItemText onClick={toggleModal} primary="Delete todo" />
+                                    </StyledMenuItem>
+                                </StyledMenu>
+                            </div>
+                        </CardHeader>
 
-                <Modal isOpen={openModal} toggle={toggleModal}>
-                    <ModalHeader className="bg-warning" toggle={toggleModal}>Delete todo</ModalHeader>
-                    <ModalBody>
-                        <h5>Are you sure delete this todo?</h5>
-                    </ModalBody>
-                    <ModalFooter>
-                        <Button variant="contained" color="secondary" onClick={() => deleteTodo(item.id)} className={classes.root} >Delete</Button>
-                        <Button variant="contained" color="primary" onClick={toggleModal}>Cancel</Button>
-                    </ModalFooter>
-                </Modal>
+                        <Modal isOpen={openModal} toggle={toggleModal}>
+                            <ModalHeader className="bg-warning" toggle={toggleModal}>Delete todo</ModalHeader>
+                            <ModalBody>
+                                <h5>Are you sure delete this todo?</h5>
+                            </ModalBody>
+                            <ModalFooter>
+                                <Button variant="contained" color="secondary" onClick={() => deleteTodo(item.id)} className={classes.root} >Delete</Button>
+                                <Button variant="contained" color="primary" onClick={toggleModal}>Cancel</Button>
+                            </ModalFooter>
+                        </Modal>
 
-                <CardBody>
-                    <CardTitle><h5>{item.text}</h5></CardTitle>
-                    <Button onClick={() => toggleButton(item.id)} className={`${classes.toggleButton} mb-3`}>Toggle items</Button>
-                    {
-                        toggleId == item.id && toggleShow ?
-                            <ol>
-                                {item.checkList.map(checkItem =>
-                                    <ToggleTextCard item={item} checkItem={checkItem} key={checkItem.id} />
-                                )}
-                            </ol>
-                            : <div></div>
-                    }
-                </CardBody>
-            </Card>
+                        <CardBody>
+                            <CardTitle><h5>{item.text}</h5></CardTitle>
+                            <Button onClick={() => toggleButton(item.id)} className={`${classes.toggleButton} mb-3`}>Toggle items</Button>
+                            {
+                                toggleId == item.id && toggleShow ?
+                                    <ol>
+                                        {item.checkList.map(checkItem =>
+                                            <ToggleTextCard item={item} checkItem={checkItem} key={checkItem.id} />
+                                        )}
+                                    </ol>
+                                    : <div></div>
+                            }
+                        </CardBody>
+                    </Card>
+                </Paper>
+            </Zoom>
         </Col>
     )
 }
